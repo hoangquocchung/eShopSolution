@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eShopSolution.Data.Entities
+namespace eShopSolution.Application.Catalog.Products.Dtos
 {
-    public class Product
+    public class ProductViewModel
     {
         public int Id { set; get; }
         public decimal Price { set; get; }
@@ -16,12 +16,11 @@ namespace eShopSolution.Data.Entities
         public DateTime DateCreated { set; get; }
         public string SeoAlias { set; get; }
 
-        public List<ProductInCategory> ProductInCategories { get; set; }
-        public List<OrderDetail> OrderDetails { get; set; }
-        public List<Cart> Carts { get; set; }
-        public List<ProductTranslation> ProductTranslations { get; set; }
-
-        public List<ProductImage> ProductImages { get; set; }
-
+        public string Name { set; get; }
+        public string Description { set; get; }
+        public string Details { set; get; }
+        public string SeoDescription { set; get; }
+        public string SeoTitle { set; get; }
+        public string LanguageId { set; get; }
     }
 }
