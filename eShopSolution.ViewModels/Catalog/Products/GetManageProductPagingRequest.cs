@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eShopSolution.ViewModels.Catalog.Products.Manage
+namespace eShopSolution.ViewModels.Catalog.Products
 {
-    public class GetProductPagingRequest : PagingRequesBase
+    public class GetManageProductPagingRequest : PagingRequesBase
     {
         public string Keyword { get; set; }
+
         public List<int> CategoryIds { get; set; }
-
-
     }
 }
