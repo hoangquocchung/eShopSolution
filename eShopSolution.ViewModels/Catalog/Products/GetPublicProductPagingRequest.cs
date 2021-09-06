@@ -9,7 +9,6 @@ namespace eShopSolution.ViewModels.Catalog.Products
 {
     public class GetPublicProductPagingRequest : PagingRequesBase
     {
-        public string languageId { get; set; }
         public int? CategoryId { get; set; }
     }
 }
