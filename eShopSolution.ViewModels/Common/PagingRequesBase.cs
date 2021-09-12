@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eShopSolution.ViewModels.Catalog.Common
+namespace eShopSolution.ViewModels.Common
 {
-    public class PagingRequesBase
+    public class PagingRequesBase : RequestBase
     {
         public int pageIndex { get; set; }
         public int pageSize { get; set; }

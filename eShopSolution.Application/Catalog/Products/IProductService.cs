@@ -1,8 +1,12 @@
-﻿using eShopSolution.ViewModels.Catalog.ProductImages;
+﻿
+using eShopSolution.ViewModels.Common;
+using eShopSolution.ViewModels.Catalog.ProductImages;
 using eShopSolution.ViewModels.Catalog.Products;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,38 +14,35 @@ namespace eShopSolution.Application.Catalog.Products
 {
     public interface IProductService
     {
-        //Task<int> Create(ProductCreateRequest request);
+        Task<int> Create(ProductCreateRequest request);
 
-        //Task<int> Update(ProductUpdateRequest request);
+        Task<int> Update(ProductUpdateRequest request);
 
-        //Task<int> Delete(int productId);
+        Task<int> Delete(int productId);
 
-        //Task<ProductVm> GetById(int productId, string languageId);
+        Task<ProductViewModel> GetById(int productId, string languageId);
 
-        //Task<bool> UpdatePrice(int productId, decimal newPrice);
+        Task<bool> UpdatePrice(int productId, decimal newPrice);
 
-        //Task<bool> UpdateStock(int productId, int addedQuantity);
+        Task<bool> UpdateStock(int productId, int addedQuantity);
 
-        //Task AddViewcount(int productId);
+        Task AddViewcount(int productId);
 
-        //Task<PagedResult<ProductVm>> GetAllPaging(GetManageProductPagingRequest request);
 
-        //Task<int> AddImage(int productId, ProductImageCreateRequest request);
+        Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
 
-        //Task<int> RemoveImage(int imageId);
+        Task<int> AddImages(int productId, ProductImageCreateRequest request);
 
-        //Task<int> UpdateImage(int imageId, ProductImageUpdateRequest request);
+        Task<int> RemoveImage(int imageId);
 
-        //Task<ProductImageViewModel> GetImageById(int imageId);
+        Task<int> UpdateImage(int imageId, ProductImageUpdateRequest request);
 
-        //Task<List<ProductImageViewModel>> GetListImages(int productId);
+        Task<ProductImageViewModels> GetImageById(int imageId);
 
-        //Task<PagedResult<ProductVm>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
+        Task<List<ProductImageViewModels>> GetListImage(int productId);
 
-        //Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
+        Task<PagedResult<ProductViewModel>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
 
-        //Task<List<ProductVm>> GetFeaturedProducts(string languageId, int take);
 
-        //Task<List<ProductVm>> GetLatestProducts(string languageId, int take);
     }
 }
