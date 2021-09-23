@@ -26,8 +26,9 @@ namespace eShopSolution.ViewModels.System.Users
         //[Display(Name = "Email")]
         public string Email { get; set; }
 
-       // [Display(Name = "Ngày sinh")]
-        //public DateTime Dob { get; set; }
+        //[Display(Name = "Ngày sinh")]
+        //[DataType(DataType.Date)]
+        public DateTime Dob { get; set; }
 
         //public IList<string> Roles { get; set; }
     }
