@@ -38,7 +38,7 @@ namespace eShopSolution.BackendApi.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous] // dùng chung phương thức cho cả backend và frontend
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             if (!ModelState.IsValid)
@@ -49,7 +49,7 @@ namespace eShopSolution.BackendApi.Controllers
             {
                 return BadRequest(result);
             }
-            return Ok();
+            return Ok(result);
         }
 
         //PUT: http://localhost/api/users/id

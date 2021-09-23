@@ -18,6 +18,7 @@ namespace eShopSolution.AdminApp.Services
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
         private readonly IHttpContextAccessor _httpContextAccessor;
+
         public UserApiClient(IHttpClientFactory httpClientFactory,
                    IHttpContextAccessor httpContextAccessor,
                     IConfiguration configuration)
@@ -26,6 +27,7 @@ namespace eShopSolution.AdminApp.Services
             _httpContextAccessor = httpContextAccessor;
             _httpClientFactory = httpClientFactory;
         }
+
         public async Task<ApiResult<string>> Authenticate(LoginRequest request)
         {
             var json = JsonConvert.SerializeObject(request);
@@ -33,14 +35,13 @@ namespace eShopSolution.AdminApp.Services
 
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
-            var response = await client.PostAsync("/api/users/authenticate",httpContent);
+            var response = await client.PostAsync("/api/users/authenticate", httpContent);
             if (response.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<ApiSuccessResult<string>>(await response.Content.ReadAsStringAsync());
             }
 
             return JsonConvert.DeserializeObject<ApiErrorResult<string>>(await response.Content.ReadAsStringAsync());
-
         }
 
         public async Task<ApiResult<UserVm>> GetById(Guid id)
@@ -57,7 +58,7 @@ namespace eShopSolution.AdminApp.Services
             return JsonConvert.DeserializeObject<ApiErrorResult<UserVm>>(body);
         }
 
-        public async Task<ApiResult<PagedResult<UserVm>>> GetUsersPaging(GetUserPagingRequest request)
+        public async Task<ApiResult<PagedResult<UserVm>>> GetUsersPagings(GetUserPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();
             var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");

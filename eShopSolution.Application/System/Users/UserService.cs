@@ -24,20 +24,16 @@ namespace eShopSolution.Application.System.Users
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<AppRole> _roleManager;
         private readonly IConfiguration _config;
-        private readonly IHttpClientFactory _httpClientFactory;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserService(UserManager<AppUser> userManager, 
+        public UserService(UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
-            RoleManager<AppRole> roleManager, 
-            IHttpContextAccessor httpContextAccessor,
+            RoleManager<AppRole> roleManager,
             IConfiguration config)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _config = config;
-            _httpContextAccessor = httpContextAccessor; 
         }
 
         public async Task<ApiResult<string>> Authencate(LoginRequest request)
@@ -48,7 +44,7 @@ namespace eShopSolution.Application.System.Users
             var result = await _signInManager.PasswordSignInAsync(user, request.Passwrod, request.RememberMe, true);
             if (!result.Succeeded)
             {
-                return null;
+                return new ApiErrorResult<string>("Đăng nhập không đúng");
             }
             var roles = await _userManager.GetRolesAsync(user);
             var claims = new[]
@@ -92,14 +88,12 @@ namespace eShopSolution.Application.System.Users
         public async Task<ApiResult<PagedResult<UserVm>>> GetUsersPaging(GetUserPagingRequest request)
         {
             var query = _userManager.Users;
-
-
-            //2. filter
             if (!string.IsNullOrEmpty(request.keyword))
             {
                 query = query.Where(x => x.UserName.Contains(request.keyword)
-                || x.PhoneNumber.Contains(request.keyword));
+                 || x.PhoneNumber.Contains(request.keyword));
             }
+
             //3. Paging
             int totalRow = await query.CountAsync();
 
@@ -107,12 +101,12 @@ namespace eShopSolution.Application.System.Users
                 .Take(request.pageSize)
                 .Select(x => new UserVm()
                 {
-                    Id = x.Id,
-                    FirstName = x.FirstName,
-                    LastName = x.LastName,
+                    Email = x.Email,
                     PhoneNumber = x.PhoneNumber,
                     UserName = x.UserName,
-                    Email = x.Email,
+                    FirstName = x.FirstName,
+                    Id = x.Id,
+                    LastName = x.LastName
                 }).ToListAsync();
 
             //4. Select and projection
@@ -145,7 +139,6 @@ namespace eShopSolution.Application.System.Users
                 UserName = request.UserName,
                 PhoneNumber = request.PhoneNumber
             };
-            
             var result = await _userManager.CreateAsync(user, request.Password);
             if (result.Succeeded)
             {

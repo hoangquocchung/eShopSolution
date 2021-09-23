@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -7,7 +6,6 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using eShopSolution.AdminApp.Services;
-using eShopSolution.Utilities.Constants;
 using eShopSolution.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -36,7 +34,7 @@ namespace eShopSolution.AdminApp.Controllers
                 pageIndex = pageIndex,
                 pageSize = pageSize
             };
-            var data = await _userApiClient.GetUsersPaging(request);
+            var data = await _userApiClient.GetUsersPagings(request);
             //ViewBag.Keyword = keyword;
             //if (TempData["result"] != null)
             //{
@@ -48,19 +46,21 @@ namespace eShopSolution.AdminApp.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(RegisterRequest request)
         {
-            if (!ModelState.IsValid) // không thông qua
+            if (!ModelState.IsValid)
                 return View();
 
             var result = await _userApiClient.RegisterUser(request);
             if (result.IsSuccessed)
+            {
+                TempData["result"] = "Thêm mới người dùng thành công";
                 return RedirectToAction("Index");
+            }
 
             ModelState.AddModelError("", result.Message);
             return View(request);
