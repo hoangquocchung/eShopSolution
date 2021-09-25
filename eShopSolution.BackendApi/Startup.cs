@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 using eShopSolution.Application.Catalog.Products;
 using eShopSolution.Application.Common;
+using eShopSolution.Application.System.Languages;
 using eShopSolution.Application.System.Roles;
 using eShopSolution.Application.System.Users;
 
@@ -52,7 +53,7 @@ namespace eShopSolution.BackendApi
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
-            //services.AddTransient<ILanguageService, LanguageService>();
+            services.AddTransient<ILanguageService, LanguageService>();
             //services.AddTransient<ISlideService, SlideService>();
 
             services.AddTransient<IRoleService, RoleService>();
