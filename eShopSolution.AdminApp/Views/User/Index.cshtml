@@ -1,18 +1,24 @@
-﻿@using eShopSolution.ViewModels.Common; 
+﻿@using eShopSolution.ViewModels.Common;
 @model PagedResult<eShopSolution.ViewModels.System.Users.UserVm>
 
 @{
     ViewData["Title"] = "Danh sách người dùng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section Scripts{
+    <script>
+        setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+        }, 2000);
+    </script>
+}
 <div class="container-fluid px-4">
     <h1 class="mt-4">Danh sách người dùng</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
         <li class="breadcrumb-item active">Danh sách người dùng</li>
     </ol>
-    
+
     <div class="card mb-4">
         <div class="card-header">
             <div class="row">
@@ -35,6 +41,12 @@
             </div>
         </div>
         <div class="card-body">
+            @if (ViewBag.SuccessMsg != null)
+            {
+                <div id="msgAlert" class="alert alert-success" role="alert">
+                    @ViewBag.SuccessMsg
+                </div>
+            }
             <table id="datatablesSimple">
                 <thead>
                     <tr>
