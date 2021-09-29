@@ -39,9 +39,10 @@ namespace eShopSolution.BackendApi.Controllers
         }
 
         [HttpPost]
+        [Consumes("multipart/form-data")] //cho phép nhận kiểu dữ liệu là 1 form dayt
         public async Task<IActionResult> Create([FromForm] ProductCreateRequest request)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
