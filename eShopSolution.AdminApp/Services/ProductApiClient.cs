@@ -75,7 +75,7 @@ namespace eShopSolution.AdminApp.Services
             var data = await GetAsync<PagedResult<ProductVm>>(
                 $"/api/products/paging?pageIndex={request.pageIndex}" +
                 $"&pageSize={request.pageSize}" +
-                $"&keyword={request.Keyword}&languageId={request.LanguageId}");
+                $"&keyword={request.Keyword}&languageId={request.LanguageId}&categoryId={request.CategoryId}");
 
             return data;
         }
