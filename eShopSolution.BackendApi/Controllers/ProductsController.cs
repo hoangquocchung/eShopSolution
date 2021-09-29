@@ -21,16 +21,14 @@ namespace eShopSolution.BackendApi.Controllers
         {
             _ProductService = ProductService;
         }
-        
-        //http://localhost:port/products?pageIndex=1&PageSize=10&CategoryId=1
-        [HttpGet("public-paging/{languageId}")]
-        public async Task<IActionResult> GetAllPaging(string LanguageId, [FromQuery] GetPublicProductPagingRequest request)
+
+        [HttpGet("paging")]
+        public async Task<IActionResult> GetAllPaging([FromQuery] GetManageProductPagingRequest request)
         {
-            var products = await _ProductService.GetAllByCategoryId(LanguageId, request);
+            var products = await _ProductService.GetAllPaging(request);
             return Ok(products);
         }
 
-        //http://localhost:port/products/1
         [HttpGet("{productId}/{languageId}")]
         public async Task<IActionResult> GetById(int productId, string languageId)
         {
