@@ -28,6 +28,7 @@ namespace eShopSolution.AdminApp.Controllers.Components
             };
 
             return View("Default", navigationVm);
+
         }
     }
 }
