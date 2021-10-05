@@ -38,6 +38,14 @@ namespace eShopSolution.BackendApi.Controllers
             return Ok(product); // Ok trả về kiểu 200
         }
 
+        [HttpGet("featured/{languageId}/{take}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetFeaturedProducts(int take, string languageId)
+        {
+            var products = await _ProductService.GetFeaturedProducts(languageId, take);
+            return Ok(products);
+        }
+
         [HttpPost]
         [Consumes("multipart/form-data")] //cho phép nhận kiểu dữ liệu là 1 form dayt
         public async Task<IActionResult> Create([FromForm] ProductCreateRequest request)
