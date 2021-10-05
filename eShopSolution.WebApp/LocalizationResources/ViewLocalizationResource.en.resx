@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="categoryUrl" xml:space="preserve">
+    <value>categories</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
@@ -130,8 +133,14 @@
     <value>Featured Products</value>
     <comment>/Home/Index</comment>
   </data>
+  <data name="Latest Products" xml:space="preserve">
+    <value>Latest Products</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="productUrl" xml:space="preserve">
+    <value>products</value>
   </data>
   <data name="Specials Offer" xml:space="preserve">
     <value>Specials Offer</value>
