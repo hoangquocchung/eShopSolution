@@ -83,9 +83,20 @@
                         <li class=""><a asp-route-culture="@culture" localize-content>Delivery</a></li>
                         <li class=""><a asp-route-culture="@culture" localize-content>Contact</a></li>
                         <li class="">
-                            <a href="#login" role="button" data-toggle="modal" style="padding-right:0">
-                                <span class="btn btn-large btn-success"><localize>Login</localize></span>
-                            </a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <form action="/@culture/Account/Logout" method="post">
+                                    <button type="submit" style="padding-right:0;margin-top:10px;margin-bottom:0px;background:transparent;border:none;">
+                                        <span class="btn btn-large btn-success"><localize>Logout</localize></span>
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <a href="/@culture/Account/Login" style="padding-right:0">
+                                    <span class="btn btn-large btn-success"><localize>Login</localize></span>
+                                </a>
+                            }
                             <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
