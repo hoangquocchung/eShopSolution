@@ -33,7 +33,6 @@ namespace eShopSolution.WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //var msg = _loc.GetLocalizedString("Vietnamese");
             var culture = CultureInfo.CurrentCulture.Name;
             var viewModel = new HomeViewModel
             {

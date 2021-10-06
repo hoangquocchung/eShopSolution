@@ -24,8 +24,7 @@ namespace eShopSolution.WebApp.Controllers
             var product = await _productApiClient.GetById(id, culture);
             return View(new ProductDetailViewModel()
             {
-                Product = product,
-                Category = await _categoryApiClient.GetById(culture, id)
+                Product = product
             });
         }
         public async Task<IActionResult> Category(int id, string culture, int page = 1)
