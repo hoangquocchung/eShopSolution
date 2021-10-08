@@ -24,6 +24,15 @@ namespace eShopSolution.WebApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult GetListItems()
+        {
+            var session = HttpContext.Session.GetString(SystemConstants.CartSession);
+            List<CartItemViewModel> currentCart = new List<CartItemViewModel>();
+            if (session != null)
+                currentCart = JsonConvert.DeserializeObject<List<CartItemViewModel>>(session);
+            return Ok(currentCart);
+        }
         public async Task<IActionResult> AddToCart(int id, string languageId)
         {
             var product = await _productApiClient.GetById(id, languageId);
@@ -44,6 +53,7 @@ namespace eShopSolution.WebApp.Controllers
                 ProductId = id,
                 Description = product.Description,
                 Image = product.ThumbnailImage,
+                Price = product.Price,
                 Name = product.Name,
                 Quantity = quantity
             };
@@ -51,7 +61,7 @@ namespace eShopSolution.WebApp.Controllers
             currentCart.Add(cartItem);
 
             HttpContext.Session.SetString(SystemConstants.CartSession, JsonConvert.SerializeObject(currentCart));
-            return Ok();
+            return Ok(currentCart);
         }
     }
 }
