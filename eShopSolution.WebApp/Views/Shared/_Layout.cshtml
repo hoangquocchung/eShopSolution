@@ -1,6 +1,7 @@
 ﻿@{
     var culture = CultureInfo.CurrentCulture.Name;
 }
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +35,8 @@
     <style type="text/css" id="enject"></style>
 </head>
 <body>
+    <input type="hidden" id="hidCulture" value="@culture" />
+    <input type="hidden" id="hidBaseAddress" value="@Configuration["BaseAddress"]" />
     <div id="header">
         <div class="container">
             <div id="welcomeLine" class="row">
@@ -185,6 +188,7 @@
 
     <script src="/themes/js/bootshop.js"></script>
     <script src="/themes/js/jquery.lightbox-0.5.js"></script>
+    <script src="~/js/site.js"></script>
 
     <!-- Themes switcher section ============================================================================================= -->
     <div id="secectionBox">
