@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\admin\Data\" />
+    <Folder Include="Areas\admin\Models\" />
     <Folder Include="wwwroot\themes\less\oregional\" />
   </ItemGroup>
 
